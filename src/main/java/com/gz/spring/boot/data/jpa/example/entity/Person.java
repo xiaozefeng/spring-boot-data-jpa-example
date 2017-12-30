@@ -1,5 +1,8 @@
 package com.gz.spring.boot.data.jpa.example.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -8,6 +11,11 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "PERSON")
+@NamedQueries(
+        @NamedQuery(name = "Person.nameQueryByName", query = "select p from Person p where p.address = ?1")
+)
+@Getter
+@Setter
 public class Person {
 
     @Id
@@ -27,35 +35,4 @@ public class Person {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdTime;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 }
